@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NR Technology — CCTV & Technology Store</title>
+<style>
+:root{--brand:#0b5cff;--dark:#0c1730;--bg:#f5f7fb;--card:#fff;--muted:#687386}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:var(--bg);color:#182033}
+header{background:linear-gradient(135deg,#07152f,#0b5cff);color:#fff;position:sticky;top:0;z-index:5;box-shadow:0 3px 18px #0002}
+.nav{max-width:1150px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;object-fit:contain;background:#fff;border-radius:12px;padding:4px}.brand{font-weight:800;font-size:20px}.sub{font-size:12px;opacity:.8}
+.spacer{flex:1}.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}.btn.light{background:#fff;color:#123}.btn.brand{background:#00c875;color:#fff}.btn.outline{background:transparent;border:1px solid #ccd4e3;color:#233}
+.hero{max-width:1150px;margin:24px auto;padding:28px 18px;display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:center}
+.heroBox{background:linear-gradient(135deg,#10295a,#0b5cff);color:#fff;border-radius:22px;padding:32px;min-height:240px;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(28px,5vw,48px);margin:0 0 12px}.hero p{font-size:16px;line-height:1.7;opacity:.92}
+.heroImg{background:#fff;border-radius:22px;padding:25px;display:flex;justify-content:center;align-items:center;min-height:240px}.heroImg img{max-width:85%;max-height:190px;object-fit:contain}
+.wrap{max-width:1150px;margin:auto;padding:0 18px 40px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 22px}.search{flex:1;min-width:220px;padding:13px;border:1px solid #d8deea;border-radius:10px;font-size:15px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border-radius:16px;overflow:hidden;border:1px solid #e8ecf3;box-shadow:0 6px 20px #17233d08}.pic{height:190px;background:#f0f3f8;display:flex;align-items:center;justify-content:center}.pic img{width:100%;height:100%;object-fit:contain}.info{padding:14px}.cat{font-size:12px;color:var(--brand);font-weight:700}.name{font-weight:800;margin:7px 0}.price{font-size:19px;font-weight:800}.old{text-decoration:line-through;color:#98a0af;font-size:13px;margin-left:5px}.cardActions{display:flex;gap:8px;margin-top:12px}.cardActions .btn{flex:1}
+.empty{text-align:center;padding:45px;color:var(--muted)}
+footer{background:#0c1730;color:#fff;padding:25px;text-align:center}.small{font-size:12px;opacity:.75}
+.modal{display:none;position:fixed;inset:0;background:#0007;z-index:20;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.panel{background:#fff;border-radius:18px;max-width:650px;width:100%;max-height:92vh;overflow:auto;padding:20px}.panel h2{margin-top:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin:10px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;padding:11px;border:1px solid #d7ddea;border-radius:9px}.field textarea{min-height:90px}.close{float:right;background:#eef2f8;border:0;border-radius:8px;padding:7px 10px;cursor:pointer}
+.cartItem{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:10px 0}.qty{display:flex;gap:6px;align-items:center}.qty button{border:1px solid #ccd3df;background:#fff;border-radius:7px;width:28px;height:28px}
+.adminTabs{display:flex;gap:8px;margin-bottom:15px}.adminTabs button.active{background:var(--brand);color:#fff}.productAdmin{border:1px solid #e3e7ef;border-radius:12px;padding:10px;margin:8px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:10px}.pic{height:145px}.hero{padding-top:10px}.heroBox{padding:23px}.row{grid-template-columns:1fr}.brand{font-size:17px}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <img class="logo" src="logo.png" onerror="this.style.display='none'">
+  <div><div class="brand">NR Technology</div><div class="sub">CCTV • Security • Technology</div></div>
+  <div class="spacer"></div>
+  <button class="btn light" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+  <button class="btn outline" style="color:#fff;border-color:#ffffff66" onclick="openAdmin()">Admin</button>
+</div></header>
+
+<section class="hero">
+ <div class="heroBox"><h1>নিরাপত্তা ও প্রযুক্তি, এক জায়গায়</h1><p>বিশ্বস্ত CCTV ও technology products দেখুন, পছন্দের পণ্য অর্ডার করুন এবং সরাসরি WhatsApp-এ অর্ডার পাঠিয়ে দিন।</p><div><button class="btn light" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Products দেখুন</button></div></div>
+ <div class="heroImg"><img src="logo.png" onerror="this.src='';this.alt='NR Technology'"></div>
+</section>
+
+<main class="wrap" id="products">
+ <div class="toolbar"><input id="search" class="search" placeholder="পণ্য খুঁজুন..." oninput="renderProducts()"><select id="cat" class="search" style="max-width:220px" onchange="renderProducts()"><option value="">সব Category</option></select></div>
+ <div id="grid" class="grid"></div>
+</main>
+
+<footer><b>NR Technology</b><br><span class="small">আপনার নিরাপত্তা, আমাদের প্রযুক্তি</span></footer>
+
+<!-- Product modal -->
+<div class="modal" id="productModal"><div class="panel"><button class="close" onclick="closeModal('productModal')">✕</button><div id="productDetails"></div></div></div>
+
+<!-- Cart modal -->
+<div class="modal" id="cartModal"><div class="panel"><button class="close" onclick="closeModal('cartModal')">✕</button><h2>আপনার Cart</h2><div id="cartList"></div><div id="cartTotal" style="font-weight:800;font-size:18px;margin:15px 0"></div><button class="btn brand" style="width:100%" onclick="openCheckout()">WhatsApp-এ Order করুন</button></div></div>
+
+<!-- Checkout -->
+<div class="modal" id="checkoutModal"><div class="panel"><button class="close" onclick="closeModal('checkoutModal')">✕</button><h2>Order Details</h2>
+ <div class="field"><label>নাম *</label><input id="cName"></div>
+ <div class="field"><label>মোবাইল *</label><input id="cPhone" inputmode="tel"></div>
+ <div class="field"><label>ঠিকানা *</label><textarea id="cAddress"></textarea></div>
+ <div class="field"><label>নোট (ঐচ্ছিক)</label><textarea id="cNote"></textarea></div>
+ <button class="btn brand" style="width:100%" onclick="sendOrder()">WhatsApp-এ Order পাঠান</button>
+</div></div>
+
+<!-- Admin -->
+<div class="modal" id="adminModal"><div class="panel"><button class="close" onclick="closeModal('adminModal')">✕</button><div id="adminArea"></div></div></div>
+
+<script>
+const ADMIN_PASSWORD="1234";
+const WA_NUMBER="8801611299600"; // আপনার WhatsApp নম্বর এখানে পরিবর্তন করা যাবে
+const defaultProducts=[
+ {id:1,name:"Hikvision 2MP HD Camera",category:"CCTV Camera",price:0,oldPrice:0,img:"",desc:"2MP HD surveillance camera"},
+ {id:2,name:"Hikvision 4MP IP Camera",category:"IP Camera",price:0,oldPrice:0,img:"",desc:"4MP Smart IP camera"},
+ {id:3,name:"Hikvision DVR 8 Channel",category:"DVR / NVR",price:0,oldPrice:0,img:"",desc:"8 channel hybrid DVR"}
+];
+let products=JSON.parse(localStorage.getItem("nr_products")||"null")||defaultProducts;
+let cart=JSON.parse(localStorage.getItem("nr_cart")||"[]");
+
+function money(n){return n?("৳ "+Number(n).toLocaleString("en-BD")):"Price on request"}
+function save(){localStorage.setItem("nr_products",JSON.stringify(products));localStorage.setItem("nr_cart",JSON.stringify(cart));}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase(), c=document.getElementById("cat").value;
+ const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
+ document.getElementById("cat").innerHTML='<option value="">সব Category</option>'+cats.map(x=>`<option ${x===c?'selected':''}>${esc(x)}</option>`).join("");
+ const arr=products.filter(p=>(!q||(`${p.name} ${p.category} ${p.desc}`).toLowerCase().includes(q))&&(!c||p.category===c));
+ document.getElementById("grid").innerHTML=arr.length?arr.map(p=>`<article class="card">
+ <div class="pic">${p.img?`<img src="${esc(p.img)}">`:`<span style="color:#9aa4b5">Product Image</span>`}</div>
+ <div class="info"><div class="cat">${esc(p.category||"Product")}</div><div class="name">${esc(p.name)}</div><div class="price">${money(p.price)} ${p.oldPrice?`<span class="old">${money(p.oldPrice)}</span>`:""}</div>
+ <div class="cardActions"><button class="btn outline" onclick="viewProduct(${p.id})">Details</button><button class="btn brand" onclick="addCart(${p.id})">Add to Cart</button></div></div></article>`).join(""):`<div class="empty" style="grid-column:1/-1">কোনো পণ্য পাওয়া যায়নি।</div>`;
+}
+function viewProduct(id){const p=products.find(x=>x.id===id);document.getElementById("productDetails").innerHTML=`<div class="pic" style="height:240px">${p.img?`<img src="${esc(p.img)}">`:"Product Image"}</div><h2>${esc(p.name)}</h2><div class="cat">${esc(p.category)}</div><h3>${money(p.price)}</h3><p>${esc(p.desc||"")}</p><button class="btn brand" onclick="addCart(${p.id});closeModal('productModal')">Add to Cart</button>`;openModal("productModal")}
+function addCart(id){const x=cart.find(i=>i.id===id);if(x)x.qty++;else cart.push({id,qty:1});save();updateCart();alert("Cart-এ যোগ হয়েছে");}
+function updateCart(){document.getElementById("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0)}
+function openCart(){renderCart();openModal("cartModal")}
+function renderCart(){const box=document.getElementById("cartList");if(!cart.length){box.innerHTML="<div class='empty'>Cart খালি</div>";document.getElementById("cartTotal").textContent="";return}
+ let total=0;box.innerHTML=cart.map(i=>{const p=products.find(x=>x.id===i.id);if(!p)return"";total+=(Number(p.price)||0)*i.qty;return `<div class="cartItem"><div><b>${esc(p.name)}</b><br>${money(p.price)} × ${i.qty}</div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button><button onclick="removeCart(${p.id})">✕</button></div></div>`}).join("");document.getElementById("cartTotal").textContent="মোট: "+money(total)}
+function changeQty(id,n){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=n;if(x.qty<1)cart=cart.filter(i=>i.id!==id);save();renderCart();updateCart()}
+function removeCart(id){cart=cart.filter(i=>i.id!==id);save();renderCart();updateCart()}
+function openCheckout(){if(!cart.length){alert("আগে পণ্য Cart-এ যোগ করুন");return}closeModal("cartModal");openModal("checkoutModal")}
+function sendOrder(){
+ const name=document.getElementById("cName").value.trim(), phone=document.getElementById("cPhone").value.trim(), address=document.getElementById("cAddress").value.trim(), note=document.getElementById("cNote").value.trim();
+ if(!name||!phone||!address){alert("নাম, মোবাইল ও ঠিকানা দিন");return}
+ let total=0, lines=[];cart.forEach(i=>{const p=products.find(x=>x.id===i.id);if(p){total+=(Number(p.price)||0)*i.qty;lines.push(`• ${p.name} — ${i.qty} pcs — ${money(p.price)}`)}});
+ const msg=`*NR Technology — New Order*%0A%0A*Customer:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Address:* ${encodeURIComponent(address)}%0A%0A*Products:*%0A${encodeURIComponent(lines.join("\n"))}%0A%0A*Total:* ${encodeURIComponent(money(total))}%0A*Note:* ${encodeURIComponent(note||"N/A")}`;
+ window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,"_blank");
+}
+function openAdmin(){
+ const pass=prompt("Admin password দিন");if(pass!==ADMIN_PASSWORD){if(pass!==null)alert("ভুল password");return}
+ renderAdmin();openModal("adminModal");
+}
+function renderAdmin(){
+ document.getElementById("adminArea").innerHTML=`<h2>NR Technology — Admin</h2>
+ <div class="adminTabs"><button class="btn brand" onclick="showAdd()">+ Product Add</button><button class="btn outline" onclick="renderAdmin()">Product List</button></div>
+ <div id="adminContent">${products.map(p=>`<div class="productAdmin"><div><b>${esc(p.name)}</b><br><span class="small">${esc(p.category)} · ${money(p.price)}</span></div><div><button class="btn outline" onclick="editProduct(${p.id})">Edit</button> <button class="btn outline" onclick="delProduct(${p.id})">Delete</button></div></div>`).join("")}</div>`;
+}
+function showAdd(p=null){document.getElementById("adminContent").innerHTML=`<div class="row"><div class="field"><label>Product Name</label><input id="pName" value="${esc(p?.name||"")}"></div><div class="field"><label>Category</label><input id="pCat" value="${esc(p?.category||"")}"></div></div>
+ <div class="row"><div class="field"><label>Price</label><input id="pPrice" type="number" value="${p?.price||0}"></div><div class="field"><label>Old Price</label><input id="pOld" type="number" value="${p?.oldPrice||0}"></div></div>
+ <div class="field"><label>Image URL (optional)</label><input id="pImg" value="${esc(p?.img||"")}" placeholder="https://..."></div>
+ <div class="field"><label>Description</label><textarea id="pDesc">${esc(p?.desc||"")}</textarea></div>
+ <button class="btn brand" onclick="saveProduct(${p?.id||0})">Save Product</button> <button class="btn outline" onclick="renderAdmin()">Cancel</button>`}
+function saveProduct(id){const p={id:id||Date.now(),name:document.getElementById("pName").value.trim(),category:document.getElementById("pCat").value.trim(),price:Number(document.getElementById("pPrice").value||0),oldPrice:Number(document.getElementById("pOld").value||0),img:document.getElementById("pImg").value.trim(),desc:document.getElementById("pDesc").value.trim()};if(!p.name){alert("Product Name দিন");return}if(id)products=products.map(x=>x.id===id?p:x);else products.unshift(p);save();renderProducts();renderAdmin();alert("Product saved")}
+function editProduct(id){showAdd(products.find(x=>x.id===id))}
+function delProduct(id){if(confirm("এই product delete করবেন?")){products=products.filter(x=>x.id!==id);save();renderProducts();renderAdmin()}}
+function openModal(id){document.getElementById(id).classList.add("show")}
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+renderProducts();updateCart();
+</script>
+</body>
+</html>
